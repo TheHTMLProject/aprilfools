@@ -4,7 +4,7 @@ powershell -windowstyle hidden -command ""
 REM Minimize all running applications
 powershell -command "(New-Object -ComObject Shell.Application).MinimizeAll()"
 REM Activating a webhook
-curl https://webhook.site/ac4cf6a1-3fe9-495c-a0d2-d90e59d72773
+curl http://canarytokens.com/terms/wi4t6dlstmswprsxv4117ekgi/post.jsp
 :begin
 cd /d "%~dp0"
 
